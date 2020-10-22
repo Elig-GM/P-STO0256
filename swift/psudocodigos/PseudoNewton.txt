@@ -1,0 +1,33 @@
+
+
+
+Metodo de Newton
+    Read Xo, Tol, Iter
+    Yo = f(Xo)
+    Do = f'(Xo)
+    Cont = 0
+    Error = Tol + 1
+    While( Y != 0 & Do != 0 & Error > Tol & Cont < Iter-1 )
+        X1 = Xo-(Yo/Do)
+        Yo = f(X1)
+        Do = f'(X1)
+        Error = abs((X1 - Xo)/X1)
+        Xo = X1
+        Cont++
+    EndWhile
+    If( Yo = 0 )
+        Print: "Xo es Raiz"
+    Else If( Error < Tol )
+        Print: "'Xo' es una raiz aproximada con una tolerancia 'Tol'"
+    Else If( Do = 0 )
+        Print: "'Xo' es posiblemente una raiz múltiple"
+    Else
+        Print: "Fracaso en 'Iter' iterraciones"
+    EndIf
+End
+
+
+
+
+
+

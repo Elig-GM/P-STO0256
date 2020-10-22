@@ -1,0 +1,43 @@
+
+
+
+Metodo de Bisección
+    Read xi, xs, Tol, Iter
+    fxi = f(xi)
+    fxs = f(xs)
+    If( fxi == 0 ) 
+        Print: “Xi es raíz”
+    Else If( fxs == 0 ) 
+        Print: “xs es raíz”
+    Else If( fxi * fxs < 0  )
+        xm = (xi + xs)/2
+        fxm = f(xm)
+        Error = Tol + 1
+        Cont = 0
+        While( fxm != 0 && Error > Tol && Cont < Iter-1 )
+            If(fxi * fxm < 0 )
+                xs = xm
+            Else 
+                xi = xm
+                fxi = fxm
+            EndIf
+            xaux = xm
+            xm = (xi + xs) / 2
+            fxm = f(xm)
+            Error = Abs(xm - xaux)
+            Cont++
+        EndWhile
+        If( fxm = 0 ) 
+            Print: “xm es raíz”
+        Else If( Error < Tol )
+            Print: “Xm es aproximación a una raíz con una Tol = 'Tol'”
+        Else 
+            Print: “Fracasó en el 'Iter' iteraciones”
+        EndIf
+    Else 
+        Print: “El intervalo es inadecuado”
+    EndIf
+End
+
+
+

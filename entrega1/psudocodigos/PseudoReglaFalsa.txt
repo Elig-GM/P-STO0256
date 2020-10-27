@@ -1,0 +1,74 @@
+read xi, xs, tolerancia, niter
+
+fxi = f(xi)
+
+fxs = f(xs)
+
+
+if (fxi == 0) 
+
+    write “xi es raíz”
+
+else if (fxs == 0) 
+
+    write “xs es raíz”
+
+else if (fxi * fxs < 0 then)
+
+    xm = xi - (fxi * (xs - xi) / (fxs - fxi))
+
+    fxm = f(xm)
+
+    error = tolerancia + 1
+
+    contador = 1
+
+
+    while ( fxm != 0 and error > tolerancia and contador < niter)
+
+        if (fxi * fxm < 0 )
+
+            xs = xm
+            fxs = fxm
+
+         else 
+
+            xi = xm
+
+            fxi = fxm
+
+        end if
+
+
+        xaux = xm
+
+        xm = xi - (fxi * (xs - xi) / (fxs - fxi))
+
+        fxm = f(xm)
+
+        error = abs(xm - xaux)
+
+        contador = contador + 1
+
+    end while
+
+
+    if (fxm = 0) 
+
+        write “xm es raíz”
+
+    else if (error < tolerancia)
+
+        write “xm es aproximación a una raíz con una tolerancia = tolerancia”
+
+    else 
+
+        write “fracasó en el niter iteraciones”
+
+    end if
+
+else 
+
+    write “el intervalo es inadecuado”
+
+end if

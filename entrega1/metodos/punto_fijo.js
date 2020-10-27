@@ -1,7 +1,6 @@
-import { Util } from './util.js'
-import * as math from 'mathjs'
+var math = require("mathjs");
 
-export const punto_fijo = {
+const punto_fijo = {
 
     evaluate: (f, g, xi, iter, tol, error) => {
         const _f = math.parser(), _g = math.parser();
@@ -11,12 +10,7 @@ export const punto_fijo = {
           x = xi,
           fx = _f.evaluate("f(" + x + ")"),
           n = 0, e = tol + 1;
-          table.push([
-            n,
-            Util.fixed(x),
-            Util.fixed(fx),
-            ""
-          ])
+          table.push([n, x, fx, ""])
           while (e > tol && 0 !== fx && n < iter - 1) {
             x = _g.evaluate("g("+ xi +")");
             fx = _f.evaluate("f(" + x + ")");
@@ -24,12 +18,7 @@ export const punto_fijo = {
             if (error === "1") e /= x;
             xi = x;
             n += 1;
-            table.push([
-              n,
-              Util.fixed(x),
-              Util.fixedExp(fx),
-              Util.fixedExp(e)
-            ]);
+            table.push([n, x, fx, e]);
           }
           0 === fx
             ? msg = "Aproximación a la raíz $x_m=" + x + "$ donde $f(Xm)=0$"

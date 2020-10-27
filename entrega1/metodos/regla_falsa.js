@@ -1,7 +1,6 @@
-import { Util } from './util.js'
-import * as math from 'mathjs'
+var math = require("mathjs");
 
-export const regla_falsa = {
+const regla_falsa = {
 
     evaluate: (f, xi, xs, iter, tol, error) => {
         const parser = math.parser();

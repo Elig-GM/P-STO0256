@@ -8,6 +8,8 @@ const gauss = {
             mult;
 
         for (let i = 0; i < n-1; i++) {
+            console.log("Etapa " + i);
+            console.log(matrix);
             mult = [];
             for (let j = i + 1; j < n; j++) {
                 mult.push(matrix[j][i] / matrix[i][i]);
@@ -19,6 +21,7 @@ const gauss = {
                         matrix[ xy[0] + i ][ xy[1] ] = value - mult[ xy[0]-1 ] * matrix[ xy[0] + ( i - xy[0] ) ][ xy[1] ];
                     }
                 });
+            console.log(matrix);
         }
         
         let x = [];
@@ -31,6 +34,14 @@ const gauss = {
             }
             x.push( temp / matrix[i][i] );
         }
+        x.reverse().map((v, i) => console.log("x"+i+": "+v));
         return { matrix, x }
     }
 };
+
+let a = gaus.evaluate([
+    [2, -1, 0, 3, 1],
+    [1, 0.5, 3, 8, 1],
+    [0, 13, -2, 11, 1],
+    [14, 5, -2, 3, 1]
+])

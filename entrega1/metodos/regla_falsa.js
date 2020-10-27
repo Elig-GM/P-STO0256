@@ -41,6 +41,11 @@ const regla_falsa = {
         } else {
             msg = "El intervalo es inadecuado, encuentre uno con cambio de signo en f(x)";
         }
+
+        console.log("n    xi     xs    xm    fxm     error");
+        table.map((value) => (console.log(value)))
+        console.log(msg);
+        
         return { table, msg }
     }
 

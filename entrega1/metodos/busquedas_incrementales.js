@@ -17,7 +17,7 @@ const busquedas_incrementales = {
             fxb = math.evaluate(f, {x: xb});
             n++;
         }
-        
+        table.map((value) => (console.log(value)))
         return table;
     }
 }

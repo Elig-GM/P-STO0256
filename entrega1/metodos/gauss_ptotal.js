@@ -2,7 +2,7 @@
 var math = require("mathjs");
 
 let numMaxRow = [];
-const gaus = {
+const gaus_ptotal = {
     
     evaluate: (array) => {
         let Matrix = math.matrix(array);
@@ -12,6 +12,8 @@ const gaus = {
             
         gaus.pivoteo(Matrix, n, 0);
         for (let i = 0; i < n-1; i++) {
+            console.log("Etapa " + i);
+            console.log(matrix);
             mults = [];
             for (let j = i + 1; j < n; j++) {
                 mults.push(matrix[j][i] / matrix[i][i]);
@@ -24,6 +26,7 @@ const gaus = {
                     }
                 });
             gaus.pivoteo(Matrix, n, i+1);
+            console.log(matrix);
         }
         
         let x = new Array(4).fill(0);
@@ -38,6 +41,7 @@ const gaus = {
             x[firtsRow.findIndex(e => (e === numMaxRow[f]))] = temp / matrix[i][i];
         }
 
+        x.reverse().map((v, i) => console.log("x"+i+": "+v));
         return { matrix, x }
     },
 
@@ -70,16 +74,11 @@ const gaus = {
 
 };
 
-let a = gaus.evaluate([
-    [20, -1, 3, 4, 30],
-    [6, 23, 4, 3, -10],
-    [7, 21, 46, 9, 20],
-    [-3, -9, 12, 38, -14]
+let a = gaus_ptotal.evaluate([
+    [2, -1, 0, 3, 1],
+    [1, 0.5, 3, 8, 1],
+    [0, 13, -2, 11, 1],
+    [14, 5, -2, 3, 1]
 ])
-let b = gaus.evaluate([
-    [2, -3, 4, 1, 10],
-    [-4, 2, 1, -2, -10],
-    [1, 3, -5, 3, 32],
-    [-3, -1, 1, -1, -21]
-])
+
 

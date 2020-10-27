@@ -34,6 +34,9 @@ const secante = {
                     ? msg = "Aproximación a la raíz xm=" + x1 + " con $Error=" + e
                     : msg = "Fracaso en " + iter + " iteraciones, hasta el momento xm=" + x1
         }
+        console.log("n    x     fx     error");
+        table.map((value) => (console.log(value)))
+        console.log(msg);
         return { table, msg }
     }
 

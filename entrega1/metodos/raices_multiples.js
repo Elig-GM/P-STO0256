@@ -38,6 +38,10 @@ const raices_multiples = {
                 ? msg = "Aproximación a la raíz xm=" + xn + " con Error=" + e
                 : msg = "Fracaso en " + iter + " iteraciones, hasta el momento xm=" + xn
 
+        console.log("n      x     fx     error");
+        table.map((value) => (console.log(value)))
+        console.log(msg);
+
         return { table, msg }
     }
 }

@@ -27,6 +27,9 @@ const newton = {
                 ? msg = "Aproximación a la raíz xm=" + x + " con Error=" + e
                 : msg = "Fracaso en " + iter + " iteraciones, hasta el momento xm=" + x
 
+        console.log("n    x     fx    dfx      error");
+        table.map((value) => (console.log(value)))
+        console.log(msg);
         return { table, msg }
     }
 

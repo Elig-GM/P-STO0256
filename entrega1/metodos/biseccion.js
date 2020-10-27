@@ -9,9 +9,9 @@ const biseccion = {
             fxi = _f.evaluate("f(" + xi + ")"),
             fxs = _f.evaluate("f(" + xs + ")");
         if (0 === fxi)
-            msg = "$x_i = " + xi + "$ es una raíz";
+            msg = "xi = " + xi + " es una raíz";
         else if (0 === fxs)
-            msg = "$x_u = " + xs + "$ es una raíz";
+            msg = "xu = " + xs + " es una raíz";
         else if (fxi * fxs < 0) {
             let xa, xm = (xi + xs) / 2,
                 fxm = _f.evaluate("f(" + xm + ")"),
@@ -34,12 +34,12 @@ const biseccion = {
                 table.push([n, xi, xs, xm, fxm, e]);
             }
             0 === fxm
-                ? msg = "Aproximación a la raíz $x_m=" + xm + "$ donde $f(x_m)=0$"
+                ? msg = "Aproximación a la raíz xm=" + xm + " donde f(xm)=0"
                 : e < tol
-                    ? msg = "Aproximación a la raíz $x_m=" + xm + "$ con $Error=" + e + "$"
-                    : msg = "Fracaso en " + iter + " iteraciones, hasta el momento $x_m=" + xm + "$"
+                    ? msg = "Aproximación a la raíz xm=" + xm + " con Error=" + e
+                    : msg = "Fracaso en " + iter + " iteraciones, hasta el momento xm=" + xm
         } else {
-            msg = "El intervalo es inadecuado, encuentre uno con cambio de signo en $f(x)$";
+            msg = "El intervalo es inadecuado, encuentre uno con cambio de signo en f(x)";
         }
         return { table, msg }
     }

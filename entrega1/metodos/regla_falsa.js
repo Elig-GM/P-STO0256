@@ -16,13 +16,7 @@ const regla_falsa = {
             var xa, xm = xi - fxi * (xs - xi) / (fxs - fxi),
                 fxm = parser.evaluate("f(" + xm + ")"),
                 n = 0, e = tol + 1;
-            table.push([
-                n,
-                Util.fixed(xi),
-                Util.fixed(xs),
-                Util.fixed(xm),
-                Util.fixedExp(fxm), ""
-            ])
+            table.push([n, xi, xs, xm, fxm, ""])
             while (e > tol && 0 !== fxm && n < iter - 1) {
                 if (fxi * fxm < 0) {
                     xs = xm;
@@ -37,14 +31,7 @@ const regla_falsa = {
                 e = Math.abs(xm - xa);
                 if (error === "1") e /= xm;
                 n += 1;
-                table.push([
-                    n,
-                    Util.fixed(xi),
-                    Util.fixed(xs),
-                    Util.fixed(xm),
-                    Util.fixedExp(fxm),
-                    Util.fixedExp(e)
-                ]);
+                table.push([n, xi, xs, xm, fxm, e]);
             }
             0 === fxm
                 ? msg = "Aproximación a la raíz $x_m=" + xm + "$ donde $f(Xm)=0$"

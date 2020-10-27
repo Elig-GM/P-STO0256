@@ -1,0 +1,16 @@
+read Ab
+n = lenght Ab
+for k = 0 to n do
+     if(|Ab(i,k)| <= EPSILON)
+       return "No se puede solucionar"
+     end if
+
+     for i = k+1 to n do
+          multiplicador = Ab(i,k)/Ab(k,k)
+          for j = k to n+1 do
+               Ab(i,j) = Ab(i,j) - multiplicador*Ab(k,j)
+          end for
+     end for
+end for
+return Ab
+end 

@@ -1,0 +1,47 @@
+read x0, delta, niter
+
+fx0 = f(x0)
+
+if (fx0 == 0)
+
+    write “x0 es raíz”
+
+else 
+
+    x1 = x0 + delta
+
+    fx1 = f(x1)
+
+    contador = 1
+
+     while fx0*fx1 > 0 and contador < niter do
+
+        x0 = x1
+
+        fx0 = fx1
+
+        x1 = x0 + delta
+
+        fx1 = f(x1)
+
+        contador = contador + 1 
+
+    end while
+
+
+
+    if (fx1 = 0)
+
+        write “x1 es raíz”
+
+    else if fx0*fx1 < 0 then 
+
+       write “ hay una raíz entre x0 y x1”
+
+    else 
+
+        write “fracasó en niter iteraciones”
+
+    end if
+
+end if

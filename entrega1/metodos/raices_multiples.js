@@ -33,10 +33,10 @@ const raices_multiples = {
             table.push([n, x, fx, e]);
         }
         0 === fx
-            ? msg = "Aproximación a la raíz $x_m=" + xn + "$ donde f(Xm)=0$"
+            ? msg = "Aproximación a la raíz xm=" + xn + " donde f(Xm)=0"
             : e < tol
-                ? msg = "Aproximación a la raíz $x_m=" + xn + "$ con $Error=" + e + "$"
-                : msg = "Fracaso en " + iter + " iteraciones, hasta el momento $x_m=" + xn + "$"
+                ? msg = "Aproximación a la raíz xm=" + xn + " con Error=" + e
+                : msg = "Fracaso en " + iter + " iteraciones, hasta el momento xm=" + xn
 
         return { table, msg }
     }

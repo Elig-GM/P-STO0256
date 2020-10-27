@@ -21,10 +21,10 @@ const punto_fijo = {
             table.push([n, x, fx, e]);
           }
           0 === fx
-            ? msg = "Aproximación a la raíz $x_m=" + x + "$ donde $f(Xm)=0$"
+            ? msg = "Aproximación a la raíz xm=" + x + " donde f(Xm)=0"
             : e < tol
-              ? msg = "Aproximación a la raíz $x_m=" + x + "$ con $Error=" + e + "$"
-              : msg = "Fracaso en " + iter + " iteraciones, hasta el momento $x_m=" + x + "$"
+              ? msg = "Aproximación a la raíz xm=" + x + " con Error=" + e
+              : msg = "Fracaso en " + iter + " iteraciones, hasta el momento xm=" + x
     
         return { table, msg };
     }

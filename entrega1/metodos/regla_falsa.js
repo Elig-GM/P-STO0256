@@ -34,12 +34,12 @@ const regla_falsa = {
                 table.push([n, xi, xs, xm, fxm, e]);
             }
             0 === fxm
-                ? msg = "Aproximación a la raíz $x_m=" + xm + "$ donde $f(Xm)=0$"
+                ? msg = "Aproximación a la raíz xm=" + xm + " donde $f(Xm)=0"
                 : e < tol
-                    ? msg = "Aproximación a la raíz $x_m=" + xm + "$ con $Error=" + e + "$"
-                    : msg = "Fracaso en " + iter + " iteraciones, hasta el momento $x_m=" + xm + "$"
+                    ? msg = "Aproximación a la raíz xm=" + xm + " con $Error=" + e
+                    : msg = "Fracaso en " + iter + " iteraciones, hasta el momento xm=" + xm
         } else {
-            msg = "El intervalo es inadecuado, encuentre uno con cambio de signo en $f(x)$";
+            msg = "El intervalo es inadecuado, encuentre uno con cambio de signo en f(x)";
         }
         return { table, msg }
     }

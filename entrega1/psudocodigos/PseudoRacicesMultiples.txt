@@ -1,0 +1,30 @@
+read tol, x0, niter
+fx = f(x0)
+dfx = f'(x0)
+d2fx = f''(x0)
+
+contador = 0
+error = tol + 1
+den = (dfx^2)-(fx * d2fx)
+while(error > tol and fx ≠ 0 and den ≠ 0 contador < niter)
+    
+    x1 = x0 - ((fx * dfx)/den)
+    fx = f(x1)
+    dfx = f'(x1)
+    d2fx = f''(x1)
+    den = (dfx^2)-(fx * d2fx)
+
+    error = abs(x1-x0) 
+    x0 = x1
+    contador = contador + 1
+end while
+
+if(fx == 0)
+    x0 "es una raíz"
+else if(error < tol)
+    x1 "es una aproximación a una raíz con una tolerancia = " tol
+else if(den == 0)
+    "El denominador es igual a cero, imposible seguir computando"
+else 
+    "el método fracasó en " niter "iteraciones"
+end if

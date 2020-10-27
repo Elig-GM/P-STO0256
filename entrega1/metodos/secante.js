@@ -29,10 +29,10 @@ const secante = {
                 table.push([n, x1, fx1, e]);
             }
             0 === fx1
-                ? msg = "Aproximación a la raíz $x_m=" + x1 + "$ donde $f(Xm)=0$"
+                ? msg = "Aproximación a la raíz xm=" + x1 + " donde f(Xm)=0"
                 : e < tol
-                    ? msg = "Aproximación a la raíz $x_m=" + x1 + "$ con $Error=" + e + "$"
-                    : msg = "Fracaso en " + iter + " iteraciones, hasta el momento $x_m=" + x1 + "$"
+                    ? msg = "Aproximación a la raíz xm=" + x1 + " con $Error=" + e
+                    : msg = "Fracaso en " + iter + " iteraciones, hasta el momento xm=" + x1
         }
         return { table, msg }
     }

@@ -24,21 +24,21 @@ const util = {
     }
 }
 
-const gauss_sediel = {
+const jacobi = {
     evaluate: (a, b, x, iter, tol) => {
         let table = [], msg = "", _x = new Array(a.length).fill(0), t, c, d, l, u, sr;
-        let error = tol + 1, temp;
+        let n = 1, error = tol + 1, temp;
         d = math.diag(math.diag(a));
         l = math.add(math.unaryMinus( util.t(a, "lt")), d);
         u = math.add(math.unaryMinus( util.t(a, "ut")), d);
 
-        t = math.multiply(math.inv(math.subtract(d, l)), u);
-        c = math.multiply(math.inv(math.subtract(d, l)), b);
+        t = math.multiply(math.inv(d), math.add(l, u));
+        c = math.multiply(math.inv(d), b);
 
         sr = math.max(math.abs(numeric.eig(t).lambda.x));
-
+        
         table.push([x.slice(), ""]);
-        for (let n = 1; n <= iter && error > tol; n++) {
+        while (n <= iter && error > tol) {
             error = 0;
             for (let i = 0; i < a.length; i++) {
                 temp = 0;
@@ -47,10 +47,11 @@ const gauss_sediel = {
                 }
                 _x[i] = (temp + b[i]) / util.zero(a[i][i]);
                 error += Math.pow(_x[i] - x[i], 2);
-                x[i] = _x[i];
             }
             error = Math.sqrt(error);
             table.push([_x.slice(), error]);
+            x = JSON.parse(JSON.stringify(_x))
+            n++;
         }
         if (error > tol)
             msg = "Fallo en " + iter + " iteraciones con un error de: " + error;
@@ -59,4 +60,4 @@ const gauss_sediel = {
     }
 };
 
-let a = gauss_sediel.evaluate([[4, -1, 0, 3], [1, 15.5, 3, 8], [0, -1.3, -4, 1.1], [14, 5, -2, 30]], [1, 1, 1, 1], [0, 0, 0, 0], 100, 1e-7);
+let a = jacobi.evaluate([[4, -1, 0, 3], [1, 15.5, 3, 8], [0, -1.3, -4, 1.1], [14, 5, -2, 30]], [1, 1, 1, 1], [0, 0, 0, 0], 100, 1e-7);

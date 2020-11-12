@@ -24,16 +24,17 @@ const util = {
     }
 }
 
-const gauss_sediel = {
-    evaluate: (a, b, x, iter, tol) => {
+const sor = {
+    evaluate: (a, b, x, delta, iter, tol) => {
         let table = [], msg = "", _x = new Array(a.length).fill(0), t, c, d, l, u, sr;
         let error = tol + 1, temp;
-        d = math.diag(math.diag(a));
-        l = math.add(math.unaryMinus( util.t(a, "lt")), d);
-        u = math.add(math.unaryMinus( util.t(a, "ut")), d);
 
-        t = math.multiply(math.inv(math.subtract(d, l)), u);
-        c = math.multiply(math.inv(math.subtract(d, l)), b);
+        d = math.diag(math.diag(a));
+        l = math.add(math.unaryMinus(util.t(a, "lt")), d);
+        u = math.add(math.unaryMinus(util.t(a, "ut")), d);
+
+        t = math.multiply(math.inv(math.subtract(d, math.multiply(delta, l))), math.add(math.multiply(1 - delta, d), math.multiply(delta, u)));
+        c = math.multiply(math.multiply(delta, math.inv(math.subtract(d, math.multiply(delta, l)))), b);
 
         sr = math.max(math.abs(numeric.eig(t).lambda.x));
 
@@ -43,9 +44,9 @@ const gauss_sediel = {
             for (let i = 0; i < a.length; i++) {
                 temp = 0;
                 for (let j = 0; j < a.length; j++) {
-                    i !== j && (temp -= a[i][j] * x[j]);
+                    i !== j && (temp += a[i][j] * x[j]);
                 }
-                _x[i] = (temp + b[i]) / util.zero(a[i][i]);
+                _x[i] = (1 - delta) * _x[i] + (delta / util.zero(a[i][i])) * (b[i] - temp);
                 error += Math.pow(_x[i] - x[i], 2);
                 x[i] = _x[i];
             }
@@ -59,4 +60,4 @@ const gauss_sediel = {
     }
 };
 
-let a = gauss_sediel.evaluate([[4, -1, 0, 3], [1, 15.5, 3, 8], [0, -1.3, -4, 1.1], [14, 5, -2, 30]], [1, 1, 1, 1], [0, 0, 0, 0], 100, 1e-7);
+let a = sor.evaluate([[4, -1, 0, 3], [1, 15.5, 3, 8], [0, -1.3, -4, 1.1], [14, 5, -2, 30]], [1, 1, 1, 1], [0, 0, 0, 0], 1.5, 100, 1e-7);

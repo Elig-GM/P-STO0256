@@ -12,7 +12,7 @@ const spline_lineal = {
         }
 
         console.log("Trazadores lineales Resultados: \n\n")
-        console.log("\nCofecientes de los trazadores:\n");
+        console.log("Cofecientes de los trazadores:\n");
         console.table(table);
         console.log("\nTrazadores:\n");
         p.map((val) => console.log(val));

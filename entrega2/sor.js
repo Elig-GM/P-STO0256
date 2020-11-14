@@ -56,6 +56,16 @@ const sor = {
         if (error > tol)
             msg = "Fallo en " + iter + " iteraciones con un error de: " + error;
 
+        console.log("\Gauss-Sediel Resultados: \n");
+        console.log("\nT:\n");
+        console.table(t)
+        console.log("\nC:\n");
+        console.log(c)
+        console.log("\nRadio espectral:\n");
+        console.log(sr)
+        console.log("\nIter        x             E");
+        console.table(table);
+
         return { result: table, msg: msg, xs: _x, t, c }
     }
 };

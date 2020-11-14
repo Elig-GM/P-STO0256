@@ -1,6 +1,5 @@
 var math = require('mathjs');
 
-// const gaus = {
 const lu_gauss_simpler = {
     evaluate: (array) => {
 
@@ -56,6 +55,8 @@ const lu_gauss_simpler = {
             }
             x.push(temp / matrix[i][i]);
         }
+
+        x.reverse().map((v, i) => console.log("x" + i + ": " + v));
         return { matrix, l, u, x }
     }
 };

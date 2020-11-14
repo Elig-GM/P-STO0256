@@ -29,14 +29,14 @@ const jacobi = {
         let table = [], msg = "", _x = new Array(a.length).fill(0), t, c, d, l, u, sr;
         let n = 1, error = tol + 1, temp;
         d = math.diag(math.diag(a));
-        l = math.add(math.unaryMinus( util.t(a, "lt")), d);
-        u = math.add(math.unaryMinus( util.t(a, "ut")), d);
+        l = math.add(math.unaryMinus(util.t(a, "lt")), d);
+        u = math.add(math.unaryMinus(util.t(a, "ut")), d);
 
         t = math.multiply(math.inv(d), math.add(l, u));
         c = math.multiply(math.inv(d), b);
 
         sr = math.max(math.abs(numeric.eig(t).lambda.x));
-        
+
         table.push([x.slice(), ""]);
         while (n <= iter && error > tol) {
             error = 0;
@@ -55,6 +55,16 @@ const jacobi = {
         }
         if (error > tol)
             msg = "Fallo en " + iter + " iteraciones con un error de: " + error;
+
+        console.log("\Gauss-Sediel Resultados: \n");
+        console.log("\nT:\n");
+        console.table(t)
+        console.log("\nC:\n");
+        console.log(c)
+        console.log("\nRadio espectral:\n");
+        console.log(sr)
+        console.log("\nIter        x             E");
+        console.table(table);
 
         return { result: table, msg: msg, xs: _x, t, c }
     }

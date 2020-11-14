@@ -29,8 +29,8 @@ const gauss_sediel = {
         let table = [], msg = "", _x = new Array(a.length).fill(0), t, c, d, l, u, sr;
         let error = tol + 1, temp;
         d = math.diag(math.diag(a));
-        l = math.add(math.unaryMinus( util.t(a, "lt")), d);
-        u = math.add(math.unaryMinus( util.t(a, "ut")), d);
+        l = math.add(math.unaryMinus(util.t(a, "lt")), d);
+        u = math.add(math.unaryMinus(util.t(a, "ut")), d);
 
         t = math.multiply(math.inv(math.subtract(d, l)), u);
         c = math.multiply(math.inv(math.subtract(d, l)), b);
@@ -54,6 +54,16 @@ const gauss_sediel = {
         }
         if (error > tol)
             msg = "Fallo en " + iter + " iteraciones con un error de: " + error;
+
+        console.log("\Gauss-Sediel Resultados: \n");
+        console.log("\nT:\n");
+        console.table(t)
+        console.log("\nC:\n");
+        console.log(c)
+        console.log("\nRadio espectral:\n");
+        console.log(sr)
+        console.log("\nIter        x             E");
+        console.table(table);
 
         return { result: table, msg: msg, xs: _x, t, c }
     }
